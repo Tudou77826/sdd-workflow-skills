@@ -1,0 +1,4 @@
+interface:
+  display_name: "SDD 模块 ASIS 分析"
+  short_description: "分析需求相关的模块内 ASIS。"
+  default_prompt: "使用 $sdd-module-asis-analysis 分析该模块内与本次需求相关的 ASIS，并写入当前 SDD 工作流指定的目标成果物。"
