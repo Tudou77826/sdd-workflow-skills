@@ -1,24 +1,11 @@
-# 轻量编排流程摘要
+# 串联顺序摘要
 
-本 skill 仅用于测试或临时串联，不替代正式 SDD 工作流编排器。
+本文件只说明三个原子 skill 的调用顺序。
 
-## 顺序
+顺序：
 
-1. ASIS：使用 `$sdd-module-asis-analysis`。
-2. TOBE：使用 `$sdd-module-tobe-design`。
-3. 门禁：使用 `$sdd-module-design-gate`。
-4. 返工复检：按门禁整改清单回到 ASIS 或 TOBE。
+1. `$sdd-module-asis-analysis`
+2. `$sdd-module-tobe-design`
+3. `$sdd-module-design-gate`
 
-## 终止条件
-
-- 门禁通过，可以进入 AICoding。
-- 出现无法自行解决的阻塞，需要用户、代码负责人或上游设计补充输入。
-
-## 成果物
-
-遵循当前 SDD 工作流指定的双文件成果物；未指定时默认使用：
-
-- `{AR编号}-{需求短名}-{模块名}模块详细设计说明书.md`
-- `{AR编号}-{需求短名}-{模块名}模块详细设计说明书.context.md`
-
-正式说明书是最终交付和唯一开发依据；`.context.md` 只记录生成过程、证据、推导、采样和复检记录。
+各阶段具体规则以对应原子 skill 为准。

@@ -1,4 +1,4 @@
 interface:
-  display_name: "SDD 模块详设流程"
-  short_description: "串联 ASIS、TOBE 和门禁，维护正式说明书与 context 双文件。"
-  default_prompt: "使用 $sdd-module-detailed-design-flow 串联 ASIS、TOBE 和门禁，维护正式模块详细设计说明书及同名前缀 .context.md，并以正式说明书作为唯一开发依据。"
+  display_name: "SDD 模块详设串联顺序"
+  short_description: "说明 ASIS、TOBE 和门禁三个原子 skill 的调用顺序。"
+  default_prompt: "使用 $sdd-module-detailed-design-flow 按顺序调用三个原子 skill：1. $sdd-module-asis-analysis；2. $sdd-module-tobe-design；3. $sdd-module-design-gate。各阶段规则以对应原子 skill 为准。"

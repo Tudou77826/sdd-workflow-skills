@@ -11,16 +11,18 @@ Windows PowerShell 读取中文 skill 文件时建议显式使用 UTF-8，例如
 
 ```powershell
 $OutputEncoding = [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)
-Get-Content -Raw -Encoding UTF8 .\sdd-module-detailed-design-flow\SKILL.md
+Get-Content -Raw -Encoding UTF8 .\sdd-module-asis-analysis\SKILL.md
 ```
 
-优先使用编排 skill 串联完整流程：
+正式使用时按阶段调用原子 skill：
 
 ```text
-使用 $sdd-module-detailed-design-flow 针对 {模块名} 完成 {需求/AR/功能点} 的模块详细设计：ASIS 写 context，TOBE 写正式说明书，Gate 写 context 门禁结论，并在门禁通过后给出是否可进入 AICoding 的结论。
+1. 使用 $sdd-module-asis-analysis 分析 {模块名} 与 {需求/AR} 相关的 ASIS。
+2. 使用 $sdd-module-tobe-design 基于 ASIS context 生成或更新正式模块详细设计说明书。
+3. 使用 $sdd-module-design-gate 检查正式说明书是否可进入 AICoding。
 ```
 
-如果只需要某个阶段，也可以直接使用原子 skill：
+也可以只调用某个阶段：
 
 ```text
 使用 $sdd-module-asis-analysis 分析 {模块名} 与 {需求/AR} 相关的 ASIS，只更新同名前缀 .context.md 中的证据、结论、边界和检索过程。
@@ -34,56 +36,26 @@ Get-Content -Raw -Encoding UTF8 .\sdd-module-detailed-design-flow\SKILL.md
 使用 $sdd-module-design-gate 检查正式模块详细设计说明书是否可作为唯一开发依据进入 AICoding。
 ```
 
+需要顺序串联时，可以使用 flow：
+
+```text
+使用 $sdd-module-detailed-design-flow 按 ASIS -> TOBE -> Gate 顺序串联三个原子 skill。各阶段规则以对应原子 skill 为准。
+```
+
 ## Skill 概览
 
 | Skill | 何时使用 | 主要输出 |
 |-------|----------|----------|
-| `sdd-module-detailed-design-flow` | 需要完整串联 ASIS、TOBE、Gate，或进行演练验证时 | ASIS context、正式说明书、门禁 context 结论 |
+| `sdd-module-detailed-design-flow` | 需要按 ASIS -> TOBE -> Gate 顺序串联三个原子 skill 时 | 三个原子 skill 的状态汇总 |
 | `sdd-module-asis-analysis` | 需要用代码证据确认现状、边界、隐藏约束、风险和测试覆盖时 | `.context.md` 中的 ASIS 结论、证据索引和过程 |
 | `sdd-module-tobe-design` | 已有 ASIS context，需要设计可直接指导 AICoding 的目标方案时 | 按正式大纲生成/更新说明书，并补充 TOBE 推导 context |
 | `sdd-module-design-gate` | 需要判断正式说明书是否能进入 AICoding，或门禁不通过后复检时 | `.context.md` 中的通过/不通过/阻塞结论、四链摘要、阻断问题和整改清单 |
-
-## 工作流程
-
-```mermaid
-flowchart LR
-  Input["需求 / AR / 功能点 / 上游 SDD 产物"] --> Boundary["检查 .sdd/software_architecture.md"]
-  Boundary --> ASIS["ASIS 分析"]
-  ASIS --> TOBE["TOBE 设计"]
-  TOBE --> Gate["设计门禁"]
-  Gate -->|通过| AICoding["进入 AICoding"]
-  Gate -->|不通过| Rework["整改清单"]
-  Rework -->|补证据或修正现状| ASIS
-  Rework -->|修正设计| TOBE
-  Gate -->|阻塞| Blocked["补充必要输入后再继续"]
-```
-
-门禁围绕四条链判断质量，而不是检查章节是否写满：
-
-- 证据链：需求/AR -> ASIS 证据 -> TOBE 决策。
-- 边界链：模块边界 -> 职责分配 -> 交互约束。
-- 执行链：TOBE 决策 -> AICoding 任务 -> 最小验证集。
-- 风险链：触发风险 -> 缓解设计 -> 验证/回退。
-
-## 关键约束
-
-- ASIS 必须且只能使用当前工作区 `.sdd/software_architecture.md` 作为模块边界来源。该文件缺失、不可读、目标模块缺失、声明含糊或与用户指定模块冲突时，中断 ASIS，并停止依赖该边界的 TOBE 和门禁流程。
-- 检查 `.sdd/software_architecture.md` 时先读取直接路径；若使用 `rg` 枚举隐藏目录，使用 `rg --files -uu .sdd`，不要用裸 `rg --files` 的空结果判定 `.sdd` 缺失。
-- 仓库根目录、子目录中的 `software_architecture.md`，以及 `softWare.md`、`software.md`、README 或代码结构推断，都不能替代 `.sdd/software_architecture.md`。
-- 演练模式需要落盘且未指定路径时，默认使用 `.sdd/AR-SDD-TRIAL-...` 或外部 `sdd-trial-output/`，不得复用真实 AR 成果物，也不得覆盖未跟踪或他人正在编辑的 `.sdd` 文件。
-- ASIS 阶段只写 `.context.md`，不得创建或编辑正式说明书。
-- TOBE 阶段是正式说明书唯一写入者，必须按 9 个一级章节组织正式说明书；第 8 章“模块详细方案”必须按需求点展开，不能只用总表替代正文。
-- Gate 阶段只读正式说明书和 `.context.md`，门禁结论、阻断问题和整改清单写入 `.context.md` 或在当前会话返回，不编辑正式说明书正文。
-- 正式说明书是唯一开发依据。任何会影响编码实现、接口契约、包/类设计、数据库、配置、调用流程、验证方式、风险控制或回退策略的内容，都必须由 TOBE 阶段写入正式说明书。
-- `.context.md` 只保留证据、检索过程、推导、替代方案、采样和复检记录。开发必需内容只存在于 `.context.md` 时，门禁必须判定正式说明书不通过。
-- 更新已有成果物前必须读取当前内容，只替换本阶段负责的章节或明确占位区域，避免覆盖其他阶段或人工补充内容。
 
 ## 目录结构
 
 ```text
 sdd-workflow-skills/
   README.md
-  sdd-module-design-method.md          # 编排流程使用的共享方法论
   sdd-module-asis-analysis/
     SKILL.md                           # ASIS 阶段规则
     agents/openai.yaml                 # Agent 接口配置
@@ -100,11 +72,11 @@ sdd-workflow-skills/
     references/gate-result-template.md # 门禁 context 模板
     references/gate-checklist.md       # 可选检查清单
   sdd-module-detailed-design-flow/
-    SKILL.md                           # 轻量编排流程
+    SKILL.md                           # 串联顺序
     agents/openai.yaml                 # Agent 接口配置
     references/flow-summary.md         # 流程摘要
   docs/presentations/
-    sdd-methodology-huawei-style/      # 方法论演示材料
+    sdd-methodology-huawei-style/      # 演示材料
 ```
 
 ## 核心概念
@@ -120,7 +92,7 @@ sdd-workflow-skills/
 
 这些 skill 适用于支持 skill 接口格式的 AI 编码 Agent（如 Codex、Cursor 等）。将本仓库中的 skill 目录安装到 Agent 的 skills 目录后，即可通过 `$sdd-module-...` 名称调用。
 
-推荐优先从 `$sdd-module-detailed-design-flow` 开始；当已有正式说明书且只需要补齐某个阶段时，再单独调用 ASIS、TOBE 或 Gate 原子 skill。
+推荐正式工作流直接按阶段调用 ASIS、TOBE 和 Gate 原子 skill。`$sdd-module-detailed-design-flow` 只说明调用顺序，不承载任何阶段规则。
 
 ## 许可证
 
