@@ -1,4 +1,0 @@
-interface:
-  display_name: "SDD 模块设计门禁"
-  short_description: "检查正式模块详设是否能作为唯一开发依据进入 AICoding。"
-  default_prompt: "使用 $sdd-module-design-gate 检查正式模块详细设计说明书是否完整承载开发指导并可进入 AICoding，context 只作为证据和过程复核材料。"

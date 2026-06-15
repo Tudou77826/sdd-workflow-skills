@@ -1,5 +1,5 @@
 ﻿---
-name: sdd-module-asis-analysis
+name: module-asis-analysis
 description: 对代码仓中某个模块内与特定 SDD 需求、AR、功能点、影响范围或计划变更相关的部分进行 ASIS 逆向分析，并只更新同名前缀 `.context.md` 中的详细证据、检索过程、边界确认记录、ASIS 结论和阻塞项。当前置 TOBE 详细设计、门禁或 AICoding 需要基于代码证据确认现状事实、隐藏约束、依赖、风险、测试覆盖和实现行为时使用。ASIS 阶段不得创建或编辑正式《{AR编号}-{需求短名}-{模块名}模块详细设计说明书.md》；正式说明书只能由 TOBE 阶段基于 context 证据生成。必须存在 `.sdd/software_architecture.md`，并且只能以该文件作为模块边界识别依据；缺失时中断。
 ---
 
