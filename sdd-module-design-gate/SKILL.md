@@ -1,4 +1,4 @@
----
+﻿---
 name: sdd-module-design-gate
 description: 对当前 SDD 工作流指定的正式《{AR编号}-{需求短名}-{模块名}模块详细设计说明书.md》进行质量门禁检查，围绕证据链、边界链、执行链和风险链判断正式说明书是否足以作为唯一开发依据支撑后续 AICoding。当前需要确认模块详设是否可进入 AICoding、发现阻断问题、生成整改清单、驱动回到 ASIS 或 TOBE 补齐并多轮复检时使用。门禁阶段不得编辑正式说明书正文；配套 `.context.md` 用于证据、过程复核和门禁记录，不得替代正式说明书中的开发指导内容。
 ---
@@ -122,7 +122,7 @@ description: 对当前 SDD 工作流指定的正式《{AR编号}-{需求短名}-
 
 ### 7. 输出门禁结果
 
-加载 `references/gate-result-template.md`，输出四链门禁结果、ASIS 采样、TOBE 探索、阻断问题、整改清单和复检记录。门禁结果写入 `.context.md` 或作为当前会话结果返回，不写入正式说明书正文。
+加载 `<skill-dir>/references/gate-result-template.md`，输出四链门禁结果、ASIS 采样、TOBE 探索、阻断问题、整改清单和复检记录。门禁结果写入 `.context.md` 或作为当前会话结果返回，不写入正式说明书正文。
 
 阻断问题只分四类：
 
@@ -154,5 +154,5 @@ description: 对当前 SDD 工作流指定的正式《{AR编号}-{需求短名}-
 
 ## 引用文件
 
-- 门禁结果模板：`references/gate-result-template.md`
-- 可选检查清单：`references/gate-checklist.md`
+- 门禁结果模板：`<skill-dir>/references/gate-result-template.md`
+- 可选检查清单：`<skill-dir>/references/gate-checklist.md`

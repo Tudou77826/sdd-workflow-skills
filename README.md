@@ -53,28 +53,30 @@ Get-Content -Raw -Encoding UTF8 .\sdd-module-asis-analysis\SKILL.md
 
 ## 目录结构
 
+技能目录内的引用文件在规则文本中统一写成 `<skill-dir>/references/文件名`，避免安装到不同 Agent skills 目录后出现相对路径歧义。
+
 ```text
 sdd-workflow-skills/
   README.md
   sdd-module-asis-analysis/
     SKILL.md                           # ASIS 阶段规则
     agents/openai.yaml                 # Agent 接口配置
-    references/asis-output-template.md # ASIS context 模板
-    references/evidence-checklist.md   # 证据挖掘清单
+    <skill-dir>/references/asis-output-template.md # ASIS context 模板
+    <skill-dir>/references/evidence-checklist.md   # 证据挖掘清单
   sdd-module-tobe-design/
     SKILL.md                           # TOBE 阶段规则
     agents/openai.yaml                 # Agent 接口配置
-    references/tobe-output-template.md # 正式说明书 TOBE 模板
-    references/aicoding-task-template.md
+    <skill-dir>/references/tobe-output-template.md # 正式说明书 TOBE 模板
+    <skill-dir>/references/aicoding-task-template.md
   sdd-module-design-gate/
     SKILL.md                           # 门禁阶段规则
     agents/openai.yaml                 # Agent 接口配置
-    references/gate-result-template.md # 门禁 context 模板
-    references/gate-checklist.md       # 可选检查清单
+    <skill-dir>/references/gate-result-template.md # 门禁 context 模板
+    <skill-dir>/references/gate-checklist.md       # 可选检查清单
   sdd-module-detailed-design-flow/
     SKILL.md                           # 串联顺序
     agents/openai.yaml                 # Agent 接口配置
-    references/flow-summary.md         # 流程摘要
+    <skill-dir>/references/flow-summary.md         # 流程摘要
   docs/presentations/
     sdd-methodology-huawei-style/      # 演示材料
 ```

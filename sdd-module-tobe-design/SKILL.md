@@ -73,7 +73,7 @@ TOBE 质量不由章节数量决定，而由四条链是否闭合决定：
 - 读取 `.context.md` 中的 ASIS 结论、需求/AR 与 ASIS 证据映射、证据索引、待确认问题、ASIS 阻塞项。
 - 读取上游设计、模块影响性分析、模块间交互设计和已有门禁整改项。
 - 提取“显式契约清单”：从用户输入、上游设计、模块交互、ASIS context 和已有正式说明书中收集已经明确给出的接口、签名、DTO/字段、JSON 名称、错误码、Topic/Path、配置项和数据结构，记录来源位置，并在正式说明书中逐项承接。
-- 如果正式说明书不存在，由 TOBE 阶段按 `references/tobe-output-template.md` 创建；如果存在，先读取当前内容，只更新 TOBE 负责的正式大纲章节。
+- 如果正式说明书不存在，由 TOBE 阶段按 `<skill-dir>/references/tobe-output-template.md` 创建；如果存在，先读取当前内容，只更新 TOBE 负责的正式大纲章节。
 
 ### 2. 初步对齐设计范围
 
@@ -119,7 +119,7 @@ TOBE 质量不由章节数量决定，而由四条链是否闭合决定：
 
 ### 4.1 输出 TOBE 变化触发表
 
-正式说明书必须按 `references/tobe-output-template.md` 的 9 个一级章节组织。第 8 章按需求点展开，是 AICoding 的核心开发依据，不能只用一个总表替代正文。
+正式说明书必须按 `<skill-dir>/references/tobe-output-template.md` 的 9 个一级章节组织。第 8 章按需求点展开，是 AICoding 的核心开发依据，不能只用一个总表替代正文。
 
 可以在正式说明书中输出变化触发表或设计决策表，用来约束后续章节是否展开。
 
@@ -179,7 +179,7 @@ TOBE 定稿前，检查正式说明书中的关键设计变量是否一致：
 
 ### 6. 更新成果物
 
-加载 `references/tobe-output-template.md`，按输出模式创建或更新正式说明书，并把 TOBE 推导、替代方案、反证记录和完整追踪矩阵写入同名前缀 `.context.md`。
+加载 `<skill-dir>/references/tobe-output-template.md`，按输出模式创建或更新正式说明书，并把 TOBE 推导、替代方案、反证记录和完整追踪矩阵写入同名前缀 `.context.md`。
 
 - 轻量输出：合并章节，保留最小充分信息，空表用“不适用，原因...”替代。
 - 标准输出：保留核心骨架，展开与本次需求相关的设计点和风险专题。
@@ -218,5 +218,5 @@ TOBE 定稿前，检查正式说明书中的关键设计变量是否一致：
 
 ## 引用文件
 
-- TOBE 输出模板：`references/tobe-output-template.md`
-- AICoding 任务模板：`references/aicoding-task-template.md`
+- TOBE 输出模板：`<skill-dir>/references/tobe-output-template.md`
+- AICoding 任务模板：`<skill-dir>/references/aicoding-task-template.md`

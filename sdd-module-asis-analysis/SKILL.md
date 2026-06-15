@@ -1,4 +1,4 @@
----
+﻿---
 name: sdd-module-asis-analysis
 description: 对代码仓中某个模块内与特定 SDD 需求、AR、功能点、影响范围或计划变更相关的部分进行 ASIS 逆向分析，并只更新同名前缀 `.context.md` 中的详细证据、检索过程、边界确认记录、ASIS 结论和阻塞项。当前置 TOBE 详细设计、门禁或 AICoding 需要基于代码证据确认现状事实、隐藏约束、依赖、风险、测试覆盖和实现行为时使用。ASIS 阶段不得创建或编辑正式《{AR编号}-{需求短名}-{模块名}模块详细设计说明书.md》；正式说明书只能由 TOBE 阶段基于 context 证据生成。必须存在 `.sdd/software_architecture.md`，并且只能以该文件作为模块边界识别依据；缺失时中断。
 ---
@@ -183,7 +183,7 @@ description: 对代码仓中某个模块内与特定 SDD 需求、AR、功能点
 - 跨模块假设和调用顺序依赖。
 - 规格漂移：设计文档、README、注释、测试和代码实现之间不一致的阈值、路径、格式、默认值、行为描述。
 
-当受影响区域复杂、风险高或文档稀疏时，使用 `references/evidence-checklist.md` 辅助检查。
+当受影响区域复杂、风险高或文档稀疏时，使用 `<skill-dir>/references/evidence-checklist.md` 辅助检查。
 
 ### 7. 区分事实、推断与待确认
 
@@ -201,7 +201,7 @@ description: 对代码仓中某个模块内与特定 SDD 需求、AR、功能点
 
 ### 8. 更新 context 成果物
 
-更新 `.context.md` 时，加载 `references/asis-output-template.md`。若工作流未指定正式说明书，则默认按 `{AR编号}-{需求短名}-{模块名}模块详细设计说明书.md` 推导同名前缀 `.context.md`，但不创建或编辑正式说明书。输出要服务后续 TOBE skill 和门禁 skill：
+更新 `.context.md` 时，加载 `<skill-dir>/references/asis-output-template.md`。若工作流未指定正式说明书，则默认按 `{AR编号}-{需求短名}-{模块名}模块详细设计说明书.md` 推导同名前缀 `.context.md`，但不创建或编辑正式说明书。输出要服务后续 TOBE skill 和门禁 skill：
 
 - 先说明本次需求或变更范围。
 - `.context.md` 维护完整需求/AR 与 ASIS 证据映射、证据链和检索过程。
@@ -254,5 +254,5 @@ description: 对代码仓中某个模块内与特定 SDD 需求、AR、功能点
 
 ## 引用文件
 
-- 使用 `references/asis-output-template.md` 组织 `.context.md` 中的 ASIS 证据、结论和过程章节。
-- 使用 `references/evidence-checklist.md` 检查仓库证据和隐藏约束。
+- 使用 `<skill-dir>/references/asis-output-template.md` 组织 `.context.md` 中的 ASIS 证据、结论和过程章节。
+- 使用 `<skill-dir>/references/evidence-checklist.md` 检查仓库证据和隐藏约束。

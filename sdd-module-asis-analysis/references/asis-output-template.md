@@ -1,4 +1,4 @@
-# 模块详细设计 ASIS context 模板
+﻿# 模块详细设计 ASIS context 模板
 
 ASIS 阶段只更新同名前缀 `.context.md`，不创建、不编辑、不覆盖正式《{AR编号}-{需求短名}-{模块名}模块详细设计说明书.md》。正式说明书只能由 TOBE 阶段基于本 context 中的证据和结论生成。
 
