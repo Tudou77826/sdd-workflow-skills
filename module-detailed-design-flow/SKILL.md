@@ -7,6 +7,10 @@ description: 轻量 SDD 模块详设串联 skill，仅说明 module-asis-analysi
 
 本 skill 只说明三个原子 skill 的调用顺序。它不定义任何新的设计规则、成果物规则、门禁规则或方法论。
 
+## 运行方式
+
+本 skill 应由当前主 Agent 直接串联执行，不要通过 SubAgent 启动；遇到需要用户或上游确认的问题，应在当前会话及时问询，避免 SubAgent 的运转模式导致问询滞后。
+
 ## 原子 Skill
 
 按顺序调用：
