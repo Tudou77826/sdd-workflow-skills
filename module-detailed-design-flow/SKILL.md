@@ -1,11 +1,11 @@
 ﻿---
 name: module-detailed-design-flow
-description: 轻量 SDD 模块详设串联 skill，仅说明 module-asis-analysis、module-tobe-design 和 module-design-gate 的 1-2-3 调用顺序。它不定义详设标准、不承载方法论、不替代正式工作流编排器；各阶段规则以对应原子 skill 为准。
+description: 轻量 SDD 模块详设串联 skill，仅说明 module-asis-analysis、module-tobe-design、module-test-design 和 module-design-gate 的调用顺序。它不定义详设标准、不承载方法论、不替代正式工作流编排器；各阶段规则以对应原子 skill 为准。
 ---
 
 # SDD 模块详设串联顺序
 
-本 skill 只说明三个原子 skill 的调用顺序。它不定义任何新的设计规则、成果物规则、门禁规则或方法论。
+本 skill 只说明四个原子 skill 的调用顺序。它不定义任何新的设计规则、成果物规则、门禁规则或方法论。
 
 ## 运行方式
 
@@ -17,4 +17,5 @@ description: 轻量 SDD 模块详设串联 skill，仅说明 module-asis-analysi
 
 1. `$module-asis-analysis`
 2. `$module-tobe-design`
-3. `$module-design-gate`
+3. `$module-test-design`
+4. `$module-design-gate`
