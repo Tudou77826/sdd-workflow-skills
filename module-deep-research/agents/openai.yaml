@@ -1,4 +1,4 @@
 interface:
   display_name: "模块深度研究"
-  short_description: "持续研究模块，沉淀 AI 可复用的模块认知资产。"
-  default_prompt: "使用 $module-deep-research 深入研究指定模块，只读代码、测试、文档和 git 历史，并将模块认知资产更新到 .sdd/project-understanding/modules/<module>/。"
+  short_description: "持续研究模块，并基于 git diff 增量刷新认知资产。"
+  default_prompt: "使用 $module-deep-research 深入研究指定模块，只读代码、测试、文档和 git 历史，并将模块认知资产更新到 .sdd/project-understanding/modules/{模块名}/。已有认知资产时先基于 git diff 增量刷新旧理解，再继续深度研究。"

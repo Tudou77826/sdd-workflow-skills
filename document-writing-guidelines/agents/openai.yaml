@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "文档书写规范"
+  short_description: "写文档前检查对话污染、术语、边界和表达是否合适。"
+  default_prompt: "使用 $document-writing-guidelines 起草、修改或审视文档，去除不该出现的对话过程、试错过程和个案现场，并保持术语克制、边界适度、表达符合文档类型。"
